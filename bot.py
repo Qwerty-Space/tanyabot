@@ -3,12 +3,9 @@ logging.basicConfig(level=logging.WARNING)
 import re
 import os
 path = os.path
-# getenv = os.getenv
 from random import randint
 from datetime import datetime
 import configparser
-# from dotenv import load_dotenv
-# load_dotenv()
 
 ### VARIABLES ###
 config = configparser.ConfigParser()
