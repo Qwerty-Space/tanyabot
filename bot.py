@@ -68,6 +68,7 @@ async def mein_fuhrer(event):
 # Insult
 @client.on(events.NewMessage(pattern = re.compile("(love|fuck|screw|damn?) (you|u) Tanya", re.I).search))
 async def insult(event):
+    sender = (await event.get_sender())
     print([currentTime.strftime("%c")], [sender.id], sender.username, event.pattern_match.string)
     await event.reply(event.pattern_match.group(1)+" you too!")
 
