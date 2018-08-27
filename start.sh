@@ -1,4 +1,4 @@
 #!/bin/bash
 # Start tanyabot
 
-screen -dmS tanyabot ./bot.py
+screen -dmS tanyabot python3 /bot.py
