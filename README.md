@@ -4,7 +4,7 @@ Silly bot for Telegram, somewhat inspired by [otouto](https://github.com/topkecl
 
 ## Requirements
 - Telethon 1.2
-- >= Python 3 (Tested on 3.6.6 and 3.7.0)
+- \>= Python 3 (Tested on 3.6.6 and 3.7.0)
 - A brain probably
 
 ---
