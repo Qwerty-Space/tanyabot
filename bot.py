@@ -120,7 +120,7 @@ async def assume(event):
 
 
 # Subreddit
-@client.on(events.NewMessage(pattern=re.compile(r"(/)?(r/)(\w+)").search))
+@client.on(events.NewMessage(pattern=re.compile(r"(?:\s|^)(/)?(r/)(\w+)\b").search))
 async def link_subreddit(event):
     sender = await event.get_sender()
     subreddit_name = event.pattern_match.group(3)
