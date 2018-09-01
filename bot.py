@@ -32,7 +32,6 @@ client = TelegramClient(path.join(script_dir, session_name), api_id, api_hash)
 def probability(percent):
     probability = random() < percent
     print(probability)
-    return probability
 
 
 ### "PLUGINS" ###
