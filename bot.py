@@ -30,7 +30,7 @@ client = TelegramClient(path.join(script_dir, session_name), api_id, api_hash)
 ### FUNCTIONS ###
 # Probability
 def probability(percent):
-    Probability = random.random() < percent
+    Probability = random() < percent
     print(Probability)
     return Probability
 
@@ -126,8 +126,17 @@ async def link_subreddit(event):
     sender = await event.get_sender()
     subreddit_name = event.pattern_match.group(3)
     subreddit_link = urljoin("https://reddit.com/r/", subreddit_name)
-    print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
-    await event.reply(f"[/r/{subreddit_name}]({subreddit_link})", link_preview=".np" not in event.raw_text)
+    log = f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}"
+
+    async def subreddit_reply():
+        await event.reply(f"[/r/{subreddit_name}]({subreddit_link})", link_preview=".np" not in event.raw_text)
+
+    if not any(isinstance(x, (MessageEntityUrl, MessageEntityTextUrl)) for x in event.entities or []):
+        print(log)
+        await subreddit_reply()
+    elif re.search(r".(np)?f", event.raw_text):
+        print(log)
+        await subreddit_reply()
 
 
 client.start(bot_token=token)
