@@ -20,7 +20,7 @@ token = config['DEFAULT']['TOKEN']
 session_name = config['DEFAULT']['SESSION_NAME']
 api_id = config['DEFAULT']['ID']
 api_hash = config['DEFAULT']['HASH']
-superadmin = int(config['DEFAULT']['superadmin'])
+superadmin = int(config['DEFAULT']['SUPERADMIN'])
 script_dir = path.dirname(path.realpath(__file__))  # Set the location of the script
 
 
