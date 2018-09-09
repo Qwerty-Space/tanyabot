@@ -1,10 +1,13 @@
 # Tanyabot
 
-Silly bot for Telegram, somewhat inspired by [otouto](https://github.com/topkecleon/otouto/).
+A plugin based, silly bot for Telegram, somewhat inspired by [otouto](https://github.com/topkecleon/otouto/), and [uniborg].
+
+[otouto]: https://github.com/topkecleon/otouto/
+[uniborg]: https://github.com/uniborg/uniborg
 
 ## Requirements
 - Telethon 1.2
-- \>= Python 3 (Tested on 3.6.6 and 3.7.0)
+- \>= Python 3.5 (Tested on 3.6.6 and 3.7.0)
 - A brain probably
 
 ---
