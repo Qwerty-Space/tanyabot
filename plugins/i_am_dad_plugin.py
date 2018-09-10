@@ -1,5 +1,5 @@
 from telethon import events, sync
-from probability_function import probability
+from global_functions import probability
 
 # Hi, Hungry!
 async def i_am_dad(event):
