@@ -10,7 +10,7 @@ async def c_to_f(event):
     print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}: {sum}")
     await event.reply(f"**{c} °C is:**  `{sum} °F`")
 
-c_to_f.event = events.NewMessage(pattern=re.compile(r"^(\d{1,9})( ?° ?| degrees)? ?c(elsius)? (to|in) (°|degrees)?f(ahrenheit)?$", re.I).search)
+c_to_f.event = events.NewMessage(pattern=re.compile(r"^(\d{1,9}|-\d{1,9})( ?° ?| degrees)? ?c(elsius)? (to|in) (°|degrees)?f(ahrenheit)?$", re.I).search)
 
 
 async def f_to_c(event):
@@ -20,4 +20,4 @@ async def f_to_c(event):
     print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}: {sum}")
     await event.reply(f"**{f} °F is:**  `{sum} °C`")
 
-f_to_c.event = events.NewMessage(pattern=re.compile(r"^(\d{1,9})( ?° ?| degrees)? ?f(ahrenheit)? (to|in) (°|degrees)?c(elsius)?$", re.I).search)
+f_to_c.event = events.NewMessage(pattern=re.compile(r"^(\d{1,9}|-\d{1,9})( ?° ?| degrees)? ?f(ahrenheit)? (to|in) (°|degrees)?c(elsius)?$", re.I).search)
