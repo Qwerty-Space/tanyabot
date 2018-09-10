@@ -10,7 +10,7 @@ async def haha(event):
     sender = await event.get_sender()
     response_length = randint(2,5)
     response = event.pattern_match.group(1)*response_length    # Format the response (between 2 to 5 times the original length)
-    print([datetime.now().strftime("%c")], [sender.id], sender.username, [response_length], event.pattern_match.string)
+    print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}: {response_length}")
     if probability(0.2):
         await event.reply(response.capitalize())    # Capitalize the response
 
