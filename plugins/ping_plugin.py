@@ -1,6 +1,6 @@
 from datetime import datetime
 from telethon import events, sync
-from probability_function import probability
+from global_functions import probability
 
 # /ping
 async def ping_pong(event):

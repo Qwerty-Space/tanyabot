@@ -12,9 +12,11 @@ All references to Hitler are jokes between some friends and I. Not to be taken s
 ## Requirements
 - [Telethon] 1.2
 - \>= Python 3.5 (Tested on 3.6.6 and 3.7.0)
+- [CurrencyConverter]
 - A brain probably
 
 [Telethon]: https://github.com/LonamiWebs/Telethon
+[CurrencyConverter]: https://pypi.org/project/CurrencyConverter/
 
 ---
 
@@ -31,7 +33,7 @@ All references to Hitler are jokes between some friends and I. Not to be taken s
 
 [my telegram]: https://my.telegram.org/
 
-`start.sh` creates a `screen` session called `tanyabot`.  Check the logs by doing `screen -r qbot`.  Detach from the session with `ctrl a`, `d`.  Stop the bot with `ctrl c`.
+`start.sh` creates a `screen` session called `tanyabot`.  Check the logs by doing `screen -r tanyabot`.  Detach from the session with <kbd>ctrl a</kbd>, <kbd>d</kbd>.  Stop the bot with <kbd>ctrl c</kbd>.
 
 
 ## Adding Custom Plugins

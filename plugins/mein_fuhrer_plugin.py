@@ -1,7 +1,7 @@
 import re
 from random import randint
 from telethon import events, sync
-from probability_function import probability
+from global_functions import probability
 
 
 # MEIN FÜHRER!

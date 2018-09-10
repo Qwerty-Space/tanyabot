@@ -1,7 +1,7 @@
 import re
 from urllib.parse import urljoin
 from telethon import events, sync
-from probability_function import probability
+from global_functions import probability
 from telethon.tl.types import MessageEntityTextUrl, MessageEntityUrl
 
 
