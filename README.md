@@ -16,7 +16,7 @@ All references to Hitler are jokes between some friends and I. Not to be taken s
 - A brain probably
 
 [Telethon]: https://github.com/LonamiWebs/Telethon
-[currency_converter}: https://pypi.org/project/CurrencyConverter/
+[CurrencyConverter]: https://pypi.org/project/CurrencyConverter/
 
 ---
 
