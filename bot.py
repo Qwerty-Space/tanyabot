@@ -11,6 +11,7 @@ from telethon.tl.types import (MessageEntityTextUrl, MessageEntityUrl,
                                MessageMediaDocument, MessageMediaPhoto)
 
 logging.basicConfig(level=logging.WARNING)
+sys.dont_write_bytecode = True
 
 
 ### VARIABLES ###
