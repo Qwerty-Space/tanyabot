@@ -15,6 +15,8 @@ async def link_subreddit(event):
     prefix = event.pattern_match.group(1)
     subreddit_name = event.pattern_match.group(2)
     suffix = event.pattern_match.group(3)
+    if not suffix:
+        suffix = ""
     subreddit_link = urljoin("https://reddit.com/", f"{prefix}/{subreddit_name}{suffix}")
     log = f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}"
 
@@ -29,5 +31,5 @@ async def link_subreddit(event):
         await subreddit_reply()
 
 link_subreddit.event = events.NewMessage(pattern=re.compile(
-        r"(?:\s|^)/?(r|u)/(\w+)(/(?:top|best|new|hot|rising|gilded|controversial|wiki/\S+))?\b"
-    ).search)
+                r"(?:\s|^)/?(r|u)/(\w+)(/(?:top|best|new|hot|rising|gilded|controversial|wiki(?:/\S+)?))?\b"
+                ).search)
