@@ -17,7 +17,7 @@ async def currency(event):
         print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}: {result}")
         await event.reply(f"**{fromval} {fromcur} is:**  `{result} {tocur}`")
     except ValueError:
-        print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
+        print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}:  {event.pattern_match.string}:  NOT AVAILABLE")
         link = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
         await event.reply(
             f"**Sorry, that currency is not supported yet.**\nFor a list of supported currencies [click here.](%s)"
