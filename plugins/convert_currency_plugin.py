@@ -25,4 +25,4 @@ async def currency(event):
             link_preview=False
         )
 
-currency.event = events.NewMessage(pattern=r"(^\d{1,9}|^\d{1,9}\.\d\d?)? ?(\D{3}) (?:to|in) (\D{3})$")
+currency.event = events.NewMessage(pattern=r"^(\d{1,9}|\d{1,9}\.\d\d?)? ?([a-z]{3}) (?:to|in) (\D{3})$")
