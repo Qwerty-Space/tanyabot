@@ -1,9 +1,20 @@
+"""
+Converts two different currencies using the [European Central Bank's exchange rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html).
+
+Example: "GBP to/in USD" (case insensitive).
+You can also specify an amount of said currency:
+"5 GBP to USD".
+
+pattern:  `(?i)^(\d{1,9}|\d{1,9}\.\d\d?)? ?([a-z]{3}) (?:to|in) ([a-z]{3})$`
+"""
+
 from telethon import events
 from currency_converter import CurrencyConverter
 c = CurrencyConverter()
 
 
 # Convert Currency
+@events.register(events.NewMessage(pattern=r"(?i)^(\d{1,9}|\d{1,9}\.\d\d?)? ?([a-z]{3}) (?:to|in) ([a-z]{3})$"))
 async def currency(event):
     sender = await event.get_sender()  # Get the sender
 
@@ -24,5 +35,3 @@ async def currency(event):
             % (link),
             link_preview=False
         )
-
-currency.event = events.NewMessage(pattern=r"^(\d{1,9}|\d{1,9}\.\d\d?)? ?([a-z]{3}) (?:to|in) (\D{3})$")

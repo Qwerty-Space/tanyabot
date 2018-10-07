@@ -10,7 +10,7 @@ A plugin based, silly [qbot] for Telegram, somewhat inspired by [otouto], and [u
 All references to Hitler are jokes between some friends and I. Not to be taken seriously. We have no relation, or involvement in any fascist, or nazi activity, and are strongly against it.
 
 ## Requirements
-- [Telethon] 1.2
+- [Telethon] 1.3
 - \>= Python 3.5 (Tested on 3.6.6 and 3.7.0)
 - [CurrencyConverter]
 - A brain probably
