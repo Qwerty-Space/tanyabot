@@ -7,7 +7,7 @@ A plugin based, silly [qbot] for Telegram, somewhat inspired by [otouto], and [u
 [qbot]: https://github.com/Qwerty-Space/qbot
 
 ## Disclaimer
-All references to Hitler are jokes between some friends and I. Not to be taken seriously. We have no relation, or involvement in any fascist, or nazi activity, and are strongly against it.
+All references to Hitler are jokes between some friends and I.  Not to be taken seriously as we have no relation, or involvement in any fascist, racist, homophobic or trans-phobic, or nazi activity, and are strongly against it.  Any jokes used in this bot that you might find offensive are not intended as such.
 
 ## Requirements
 - [Telethon] 1.3
@@ -39,4 +39,4 @@ All references to Hitler are jokes between some friends and I. Not to be taken s
 ## Adding Custom Plugins
 
 Create a new plugin file using the template `{name}plugin.py`.  For example `my_plugin.py`.  
-`from telethon import events, sync` and `from global_functions import probability` should be at the top.  Then just add whatever you want.
+`from telethon import events, sync` and `from .global_functions import probability` (optional) should be at the top.  Then just add whatever you want.  See [start_plugin](plugins//assumption_plugin.py) as an example/template.  (And please don't be offended)
