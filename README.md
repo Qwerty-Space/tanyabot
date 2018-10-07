@@ -40,4 +40,4 @@ All references to Hitler are jokes between some friends and I.  Not to be taken 
 ## Adding Custom Plugins
 
 Create a new plugin file using the template `{name}plugin.py`.  For example `my_plugin.py`.  
-`from telethon import events, sync` and `from .global_functions import probability` (optional) should be at the top.  Then just add whatever you want.  See [start_plugin](plugins//assumption_plugin.py) as an example/template.  (And please don't be offended)
+`from telethon import events, sync` and `from .global_functions import probability` (optional) should be at the top.  Then just add whatever you want.  See [this plugin](plugins//assumption_plugin.py) as an example/template.  (And please don't be offended)
