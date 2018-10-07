@@ -25,7 +25,7 @@ All references to Hitler are jokes between some friends and I.  Not to be taken 
 1.  `pip install -r requirements.txt`
 1.  `cp example_config.ini config.ini`
 1.  Follow this [link][my telegram] and login with your phone number
-1.  A Create new application window will appear.  Fill in your application details.  There is no need to enter any URL, and only the first two fields (App title and Short name) can currently be changed later.
+1.  A "Create New Application" window will appear.  Fill in your application details.  There is no need to enter any URL, and only the first two fields (App title and Short name) can currently be changed later.
 1.  Click on Create application at the end.  
 1.  Add your api id, api hash, and other information to `config.ini`
     -  To get the `token`, you must create a bot with botfather
