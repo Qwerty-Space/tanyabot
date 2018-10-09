@@ -14,5 +14,5 @@ from .global_functions import probability
 async def assume(event):
     sender = await event.get_sender()
     print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
-    if probability(0.2):
+    if probability(0.05):
         await event.reply("Did you just assume their gender?!")
