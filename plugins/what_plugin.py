@@ -10,10 +10,12 @@ from telethon import events, sync
 async def wut(event):
     if event.is_reply:
         repliedmsg = await event.get_reply_message()
-        await event.reply(f"**{repliedmsg.raw_text.upper()}**")
+        msgtext = repliedmsg.raw_text
     else:
         prev_id = (event.id)-1
         prev_msg = await event.client.get_messages(event.chat_id, ids=prev_id)
-        await event.reply(f"**{prev_msg.raw_text.upper()}**")
-    sender = await event.get_sender()
-    print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
+        msgtext = prev_msg.raw_text
+    if msgtext:
+        await event.reply(f"**{msgtext.upper()}**")
+        sender = await event.get_sender()
+        print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
