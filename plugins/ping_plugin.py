@@ -1,5 +1,4 @@
-"""
-The bot will reply with the time it took to respond to your command.
+"""The bot will reply with the time it took to respond to your command.
 Works in private only
 
 pattern: `/ping$`

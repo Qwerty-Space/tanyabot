@@ -1,5 +1,4 @@
-r"""
-When a user says "haha" (or any variant in length of), the bot
+r"""When a user says "haha" (or any variant in length of), the bot
 will respond with their message multiplied by a random number between 2 and 5.
 
 pattern:  `(?i)(hah?\w+a)$`

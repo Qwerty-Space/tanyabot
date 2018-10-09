@@ -1,5 +1,4 @@
-"""
-When a user mentions a person with "he", "she" or their
+"""When a user mentions a person with "he", "she" or their
 derivatives, the bot will respond with "Did you just assume their gender?!"
 
 pattern:  `(?i)\b(he|his|she|her)\b`

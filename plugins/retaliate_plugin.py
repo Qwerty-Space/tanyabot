@@ -1,5 +1,4 @@
-"""
-If you say "love you botname/username" the bot will respond with "love you too!"
+"""If you say "love you botname/username" the bot will respond with "love you too!"
 It also works with other words, like "fuck", "screw", "damn"
 
 pattern:  `(?i)(love|fuck|screw|damn?) (yo)?u @?({fname}|{name}|{username})`

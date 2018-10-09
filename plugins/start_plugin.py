@@ -1,5 +1,4 @@
-"""
-Start message
+"""Start message
 
 pattern: `/start$`
 """
@@ -11,6 +10,7 @@ from .global_functions import probability
 # /start
 @events.register(events.NewMessage(pattern=r"/start$"))
 async def on_start(event):
+    print((await event.client.get_me()).first_name)
     sender = await event.get_sender()    # Get the sender
     if event.is_private:    # If command was sent in private
         print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")

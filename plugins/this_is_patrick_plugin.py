@@ -1,5 +1,4 @@
-r"""
-Saying "is this something" will result in the bot replying with "No, this is Patrick."
+r"""Saying "is this something" will result in the bot replying with "No, this is Patrick."
 
 pattern:  `^is this ((?:\S+ ?){1,4})\??$`
 """

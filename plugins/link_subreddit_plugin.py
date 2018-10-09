@@ -1,5 +1,4 @@
-r"""
-When a user mentions a subreddit, the bot will respond with a link to that page on the subreddit.
+r"""When a user mentions a subreddit, the bot will respond with a link to that page on the subreddit.
 
 For example sending "/r/aww/top" will provide a link to the top or /r/aww
 

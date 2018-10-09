@@ -1,5 +1,4 @@
-r"""
-When a user says "I'm __something__", (up to three words) the bot will respond with "Hi something"
+r"""When a user says "I'm __something__", (up to three words) the bot will respond with "Hi something"
 
 pattern:  `(?i)^(?:i'?m|i am) ((?:\S+ ?){1,3})$`
 """
