@@ -49,7 +49,6 @@ for pluginfile in pluginfiles:
 
 ### HELP! ###
 plugin_list = "`\n• `".join(plugin_dict)
-print(plugin_list)
 help_message = f"""**List of commands:**
 • `{plugin_list}`
 
