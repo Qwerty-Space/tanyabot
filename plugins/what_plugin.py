@@ -9,7 +9,6 @@ from telethon import events, sync
 @events.register(events.NewMessage(pattern=r"(?i)^wh?[aou]t\??$"))
 async def wut(event):
     if event.is_reply:
-        
         repliedmsg = await event.get_reply_message()
         await event.reply(f"**{repliedmsg.raw_text.upper()}**")
     else:
