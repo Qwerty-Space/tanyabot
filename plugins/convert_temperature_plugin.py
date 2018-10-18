@@ -18,7 +18,7 @@ from .global_functions import log
 @events.register(events.NewMessage(pattern=r"(?i)^(\d{1,9}|-\d{1,9})( ?° ?| degrees)? ?c(elsius)? (to|in) (°|degrees)?f(ahrenheit)?$"))
 async def c_to_f(event):
     c = int(event.pattern_match.group(1))
-    sum = round(((c * 1.8) + 32), 2)
+    sum = round((c * 1.8 + 32), 2)
     await log(event, sum)
     await event.reply(f"**{c} °C is:**  `{sum} °F`")
 
