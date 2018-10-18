@@ -13,4 +13,3 @@ async def log(event, info=""):
         f"""[{event.date.strftime('%c')}]:
     [{sender.id}]@[{event.chat.id}] {sender.first_name}@{sender.username}: {event.pattern_match.string}
     {info}""")
-
