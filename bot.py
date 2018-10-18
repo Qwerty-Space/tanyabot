@@ -2,10 +2,11 @@ import re
 import sys
 import logging
 import configparser
-from importlib import import_module
+from importlib import import_module, reload
 from os import listdir, path
 from datetime import datetime
 from inspect import getmembers
+from plugins.global_functions import log
 
 from telethon import TelegramClient, custom, events, sync
 from telethon.tl.types import (MessageEntityTextUrl, MessageEntityUrl,
@@ -40,16 +41,25 @@ for pluginfile in pluginfiles:
     if re.search(r".+plugin\.py$", pluginfile):
         plugin_name = pluginfile[:-3]
         plugin_shortname = plugin_name[:-7]
-        plugin = import_module(f"plugins.{plugin_name}", plugin_name)
+        plugin = import_module(f"plugins.{plugin_name}")
         plugin_dict[plugin_shortname] = plugin.__doc__
         for name, handler in getmembers(plugin):
             if events.is_handler(handler):
                 client.add_event_handler(handler)
 
 
+# ## RELOAD PLUGINS ###
+# @client.on(events.NewMessage(pattern=r"^/reload$"))
+# async def reload_plugins(event):
+#     for name, module in sys.modules.items():
+#         print(name)
+#         print(module)
+#         reload(module)
+
+
 ### HELP! ###
 plugin_list = "`\n• `".join(plugin_dict)
-help_message = f"""**List of commands:**
+help_message = f"""**List of functions:**
 • `{plugin_list}`
 
 Do `/help <command>` to learn more about it.
@@ -57,9 +67,8 @@ Do `/help <command>` to learn more about it.
 
 @client.on(events.NewMessage(pattern=r"^/help(?: (\S+))?$"))
 async def help(event):
-    sender = await event.get_sender()
     if event.is_private:
-        print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
+        await log(event)
         try:
             await event.respond(plugin_dict[event.pattern_match.group(1)], link_preview=False)
         except:
@@ -73,4 +82,5 @@ except ValueError:
     pass
 
 print("Bot started at:  "+datetime.now().strftime("%c"))
+# print(sys.modules)
 client.run_until_disconnected()

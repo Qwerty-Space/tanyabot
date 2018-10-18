@@ -5,17 +5,17 @@ pattern:  `(?i)(yes|y)(/| or )(no|n)\??$`
 """
 
 import re
-from telethon import events, sync
-from .global_functions import probability
+from telethon import events
+from .global_functions import probability, log
 
 
 # Yes or no
 # Matches "y/n" "yes or no" "yes/no?" etc
 @events.register(events.NewMessage(pattern=re.compile(r"(?i)(yes|y)(/| or )(no|n)\??$").search, forwards=False))
 async def yes_or_no(event):
-    sender = await event.get_sender()
-    print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
-    if probability(0.5):
+    outcome = probability(0.5)
+    await log(event, outcome)
+    if outcome:
         await event.reply("Yes.")
     else:
         await event.reply("No.")

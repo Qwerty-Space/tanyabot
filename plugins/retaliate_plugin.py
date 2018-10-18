@@ -6,7 +6,7 @@ pattern:  `(?i)(love|fuck|screw|damn?) (yo)?u @?({fname}|{name}|{username})`
 
 import re
 from telethon import events, sync
-from .global_functions import probability
+from .global_functions import log
 
 
 # Insult
@@ -16,6 +16,5 @@ async def insult(event):
     fname = re.sub(r"\W.+", "", name)
     username = (await event.client.get_me()).username
     if re.match(fr"(?i)({fname}|{name}|{username})", event.pattern_match.group(3)):
-        sender = await event.get_sender()
-        print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}: {event.pattern_match.string}")
+        await log(event)
         await event.reply(event.pattern_match.group(1)+" you too!")    # "Love you too!"
