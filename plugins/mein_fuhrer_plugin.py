@@ -1,25 +1,27 @@
 r"""
 When a user mentions Hitler, or the Führer, the bot will respond with one of three messages.
-pattern:  `(?i)\b(hitler|führer|fuhrer)\b`
+
+pattern:  `(?i)\b(hitler|führer|fuhrer)\b` __(global)__
 """
 
 import re
 from random import randint
 from telethon import events, sync
-from .global_functions import probability
+from .global_functions import probability, log
 
 
 # MEIN FÜHRER!
-@events.register(events.NewMessage(pattern=re.compile(r"\b(hitler|führer|fuhrer)\b", re.I).search, outgoing=False))
+@events.register(events.NewMessage(pattern=re.compile(r"(?i)\b(hitler|führer|fuhrer)\b").search, outgoing=False))
 async def mein_fuhrer(event):
-    sender = await event.get_sender()
+    outcome = probability(0.4)
     response_id = randint(0,3) # Roll for the response
-    print(f"[{event.date.strftime('%c')}] [{sender.id}] {sender.username}[{response_id}]: {event.pattern_match.string}")
-    if response_id == 0:
-        await event.reply("Heil Hitler!")
-    elif response_id == 1:
-        await event.reply("Sieg Heil!")
-    elif response_id == 2:
-        await event.reply(file="CAADAgADWgADraG3CP76-OQcP7msAg")
-    elif response_id == 3:
-        await event.reply(file="CAADBAADkQYAAhgwqgVYHov8PqiL9gI")
+    if outcome:
+        if response_id == 0:
+            await event.reply("Heil Hitler!")
+        elif response_id == 1:
+            await event.reply("Sieg Heil!")
+        elif response_id == 2:
+            await event.reply(file="CAADAgADWgADraG3CP76-OQcP7msAg")
+        elif response_id == 3:
+            await event.reply(file="CAADBAADkQYAAhgwqgVYHov8PqiL9gI")
+    await log(event, f"{outcome}, {response_id}")
