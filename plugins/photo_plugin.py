@@ -1,5 +1,5 @@
 """When an image file is sent to the bot, it will respond with a compressed preview of the file.
-
+It will only respond to images under 10 MB.
 """
 
 import os
