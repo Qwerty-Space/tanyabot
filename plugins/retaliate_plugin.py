@@ -21,4 +21,4 @@ async def insult(event):
     username = (await event.client.get_me()).username
     if re.match(fr"(?i)({fname}|{name}|{username})", event.pattern_match.group("name")):
         await log(event)
-        await event.reply(event.pattern_match.group(1)+" too!")    # "Love you too!"
+        await event.reply(f"{event.pattern_match.group(1)} too!")    # "Love you too!"
