@@ -2,11 +2,11 @@ import re
 import sys
 import logging
 import configparser
-from importlib import import_module, reload
 from os import listdir, path
 from datetime import datetime
 from inspect import getmembers
 from plugins.global_functions import log
+from importlib import import_module, reload
 
 from telethon import TelegramClient, custom, events, sync
 from telethon.tl.types import (MessageEntityTextUrl, MessageEntityUrl,
@@ -77,10 +77,9 @@ async def help(event):
 
 client.start(bot_token=token)
 try:
-    client.send_message(superadmin, "**Bot started at:**  "+datetime.now().strftime("`%c`"))
+    client.send_message(superadmin, f"**Bot started at:**  {datetime.now().strftime('`%c`')}")
 except ValueError:
     pass
 
-print("Bot started at:  "+datetime.now().strftime("%c"))
-# print(sys.modules)
+print(f"Bot started at:  {datetime.now().strftime('%c')}")
 client.run_until_disconnected()

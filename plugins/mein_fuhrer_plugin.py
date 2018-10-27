@@ -11,7 +11,7 @@ from .global_functions import probability, log
 
 
 # MEIN FÜHRER!
-@events.register(events.NewMessage(pattern=re.compile(r"(?i)\b(hitler|führer|fuhrer)\b").search, outgoing=False))
+@events.register(events.NewMessage(pattern=re.compile(r"\b(hitler|führer|fuhrer)\b").search, outgoing=False))
 async def mein_fuhrer(event):
     outcome = probability(0.4)
     response_id = randint(0,3) # Roll for the response

@@ -5,7 +5,7 @@ pattern: `/ping$`
 """
 
 from datetime import datetime
-from telethon import events, sync
+from telethon import events
 from .global_functions import log
 
 # /ping
