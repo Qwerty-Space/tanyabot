@@ -33,7 +33,6 @@ client = TelegramClient(path.join(script_dir, session_name), api_id, api_hash)
 
 ### IMPORT PLUGINS ###
 plugindir = "plugins" # Change plugin path here
-script_dir = path.dirname(path.realpath(__file__))
 pluginfiles = listdir(plugindir)
 plugin_dict = {}
 
