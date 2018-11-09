@@ -3,7 +3,7 @@ It will only respond to images under 10 MB.
 """
 
 import os
-from telethon import events
+from telethon import events, errors
 from .global_functions import log
 
 
@@ -12,7 +12,8 @@ async def on_photo(event):
     if event.message.sticker or not event.is_private:
         return
     try:
-        image = event.message.media.document
+        msg = event.message
+        image = msg.media.document
         mime_type = image.mime_type
     except AttributeError:
         return
@@ -20,8 +21,11 @@ async def on_photo(event):
         await event.reply("Image too large!  It must be under 10 MB.")
         await log(event, f"Image too large!")
         return
-    file_name = f"{image.id}.{mime_type[+6:]}"
+    file_name = f"{msg.from_id}{image.id}{msg.id}.{mime_type[+6:]}"
     await log(event, f"Image file: {file_name}")
     await event.download_media(file=file_name)
-    await event.reply(file=file_name)
+    try:
+        await event.reply(file=file_name)
+    except errors.rpcerrorlist.PhotoInvalidDimensionsError:
+        await event.reply("The photo's dimensions are not supported by Telegram.")
     os.remove(f"{file_name}")
