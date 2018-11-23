@@ -1,17 +1,18 @@
 r"""Saying "is this __something__" will result in the bot replying with "No, this is Patrick."
 
-pattern:  `(?i)^is this ((?:\S+ ?){1,4})\??$`
+Limits to once a minute.
+
+pattern:  `(?i)^is this ((?:\S+ ?){1,3})\??$`
 """
 
 import re
 from telethon import events
-from .global_functions import probability, log
+from .global_functions import log, cooldown
 
 
 # No, this is Patrick!
-@events.register(events.NewMessage(pattern=r"(?i)^is this ((?:\S+ ?){1,4})\??$"))
+@events.register(events.NewMessage(pattern=r"(?i)^is this ((?:\S+ ?){1,3})\??$"))
+@cooldown(60)
 async def this_is_patrick(event):
-    outcome = probability(0.2)
-    if outcome:
-        await event.reply("No, this is Patrick.")
-    await log(event, outcome)
+    await event.reply("No, this is Patrick.")
+    await log(event)
