@@ -35,7 +35,7 @@ async def send_ass(event):
     username = (await event.client.get_me()).username
     if usr_group and username not in usr_group:
         return
-    wait_msg = await event.reply("Generating...  Please wait approximately 10 seconds")
+    wait_msg = await event.reply("Generating.  Please wait...")
     await log(event, "Generating")
     start_time = round(time.time(), 2)
     msg = event.message
