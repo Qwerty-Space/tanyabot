@@ -51,5 +51,5 @@ async def list_currencies(event):
     if usr_group and username not in usr_group:
         return
 
-    text = f"**List of supported currencies:**\n {', '.join(sorted(c.currencies))}\n\nFor a detailed list of supported currencies [click here.]({link})"
+    text = f"**List of supported currencies:**\n{', '.join(sorted(c.currencies))}\n\nFor a detailed list of supported currencies [click here.]({link})"
     await event.reply(text, link_preview=False)
