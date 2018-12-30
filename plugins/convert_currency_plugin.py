@@ -45,6 +45,7 @@ async def currency(event):
         )
 
 @events.register(events.NewMessage(pattern=r"/currencies(@\w+)?$"))
+@cooldown(60)
 async def list_currencies(event):
     usr_group = event.pattern_match.group(1)
     username = (await event.client.get_me()).username
@@ -53,3 +54,4 @@ async def list_currencies(event):
 
     text = f"**List of supported currencies:**\n{', '.join(sorted(c.currencies))}\n\nFor a detailed list of supported currencies [click here.]({link})"
     await event.reply(text, link_preview=False)
+    await log(event)
