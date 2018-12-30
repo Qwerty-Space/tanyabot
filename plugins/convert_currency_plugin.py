@@ -14,7 +14,7 @@ patterns:
 
 from telethon import events
 from currency_converter import CurrencyConverter
-from .global_functions import log
+from .global_functions import log, cooldown
 
 c = CurrencyConverter()
 link = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
