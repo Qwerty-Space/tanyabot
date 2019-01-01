@@ -24,6 +24,8 @@ async def link_subreddit(event):
         subreddit = "".join(s)
         subreddit_link = urljoin("https://reddit.com/", subreddit)
         reply_msg += f"• [/{subreddit}]({subreddit_link})\n"
+        if len(event.pattern_match) < 2:
+            reply_msg = reply_msg[2:]
     link_bool = ".np" not in event.raw_text and len(event.pattern_match) < 2
     await log(event, ".np" not in event.raw_text)
     await event.reply(reply_msg, link_preview=link_bool)
