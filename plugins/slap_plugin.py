@@ -79,3 +79,4 @@ async def slap(event):
         slapee = await (await event.get_reply_message()).get_sender()
     mention_slapee = f"[{slapee.first_name}](tg://user?id={slapee.id})"
     await event.respond(await random_slap(event, slapper, mention_slapee))
+    await log(event)
