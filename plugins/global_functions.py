@@ -14,14 +14,10 @@ def probability(percent):
 # Logging
 async def log(event, info=""):
     sender = await event.get_sender()
-    # try: 
-    #     message = event.pattern_match.string
-    # except AttributeError:
-    #     message = ""
-    message = inspect.currentframe().f_back.f_code.co_name
+    command = inspect.currentframe().f_back.f_code.co_name
     logging.info(
         f"""[{event.date.strftime('%c')}]:
-    [{sender.id}]@[{event.chat.id}] {sender.first_name}@{sender.username}: {message}
+    [{sender.id}]@[{event.chat.id}] {sender.first_name}@{sender.username}: {command}
     {info}""".rstrip())
 
 # Cooldown
