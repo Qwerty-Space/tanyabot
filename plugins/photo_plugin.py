@@ -1,5 +1,5 @@
 """When an image file is sent to the bot, it will respond with a compressed preview of the file.
-It will only respond to images under 10 MB.
+It will only respond to image files under 10 MB.
 """
 
 import os
@@ -17,9 +17,11 @@ async def on_photo(event):
         mime_type = image.mime_type
     except AttributeError:
         return
-    if "image" not in mime_type or image.size > 10000000:
+    if "image" not in mime_type:
+        return
+    if image.size > 10000000:
         await event.reply("Image too large!  It must be under 10 MB.")
-        await log(event, f"Image too large!")
+        await log(event, "Image too large!")
         return
     file_name = f"{msg.from_id}{image.id}{msg.id}.{mime_type[+6:]}"
     await log(event, f"Image file: {file_name}")
@@ -28,4 +30,4 @@ async def on_photo(event):
         await event.reply(file=file_name)
     except errors.rpcerrorlist.PhotoInvalidDimensionsError:
         await event.reply("The photo's dimensions are not supported by Telegram.")
-    os.remove(f"{file_name}")
+    os.remove(file_name)
