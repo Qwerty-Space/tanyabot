@@ -26,7 +26,7 @@ async def random_slap(event, slapper, slapee):
         f"{slapee} was squashed by a falling anvil whilst fighting {slapper}.",
         f"{slapee} went up in flames.",
         f"{slapee} burned to death.",
-        f"{slapee} was burnt to a crisp whilst figting {slapper}.",
+        f"{slapee} was burnt to a crisp whilst fighting {slapper}.",
         f"{slapee} went off with a bang.",
         f"{slapee} went off with a bang whilst fighting {slapper}.",
         f"{slapee} was slain by {slapper}.",
