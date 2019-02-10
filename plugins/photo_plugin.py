@@ -3,7 +3,7 @@ It will only respond to image files under 10 MB.
 """
 
 import os
-from telethon import events, errors
+from telethon import events, errors, functions, types
 from .global_functions import log
 
 
@@ -23,6 +23,10 @@ async def on_photo(event):
         await event.reply("Image too large!  It must be under 10 MB.")
         await log(event, "Image too large!")
         return
+    await event.client(functions.messages.SetTypingRequest(
+        peer=event.from_id,
+        action=types.SendMessageUploadPhotoAction(1)
+    ))
     file_name = f"{msg.from_id}{image.id}{msg.id}.{mime_type[+6:]}"
     await log(event, f"Image file: {file_name}")
     await event.download_media(file=file_name)
