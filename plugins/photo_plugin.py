@@ -3,8 +3,20 @@ It will only respond to image files under 10 MB.
 """
 
 import os
+from PIL import Image
 from telethon import events, errors, functions, types
 from .global_functions import log
+
+
+async def downscale(image):
+    im = Image.open(image)
+    size = 1280, 1280 # Rezise to a maxium of.  (Telegram's limit)
+    outfile = image + ".thumb.jpeg"
+
+    im.thumbnail(size, Image.LANCZOS)
+    im.save(outfile, "JPEG")
+
+    return outfile
 
 
 @events.register(events.NewMessage(outgoing=False))
@@ -27,11 +39,15 @@ async def on_photo(event):
         peer=event.from_id,
         action=types.SendMessageUploadPhotoAction(1)
     ))
+
     file_name = f"{msg.from_id}{image.id}{msg.id}.{mime_type[+6:]}"
     await log(event, f"Image file: {file_name}")
     await event.download_media(file=file_name)
+    im = await downscale(file_name)
+    os.remove(file_name)
+
     try:
-        await event.reply(file=file_name)
+        await event.reply(file=im)
     except errors.rpcerrorlist.PhotoInvalidDimensionsError:
         await event.reply("The photo's dimensions are not supported by Telegram.")
-    os.remove(file_name)
+    os.remove(im)
