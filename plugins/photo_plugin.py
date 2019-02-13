@@ -8,13 +8,13 @@ from telethon import events, errors, functions, types
 from .global_functions import log
 
 
-async def downscale(image):
-    im = Image.open(image)
+async def downscale(item):
+    im = Image.open(item)
     size = 1280, 1280 # Rezise to a maxium of.  (Telegram's limit)
-    outfile = image + ".thumb.jpeg"
+    outfile = f"{item}.thumb.{im.format}"
 
     im.thumbnail(size, Image.LANCZOS)
-    im.save(outfile, "JPEG")
+    im.save(outfile)
 
     return outfile
 
