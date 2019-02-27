@@ -16,7 +16,7 @@ from telethon.tl.types import MessageEntityTextUrl, MessageEntityUrl
 
 # Subreddit
 @events.register(events.NewMessage(pattern=re.compile(
-                    r"(?i)(?:^|\s)/?(r/\w+)(/(?:top|best|new|hot|rising|gilded|controversial|wiki(?:/\S+)?))?\b"
+                    r"(?i)(?:^|\s)/?(r/[\w_-]{3,20})(/(?:top|best|new|hot|rising|gilded|controversial|wiki(?:/\S+)?))?\b"
                 ).findall))
 async def link_subreddit(event):
     reply_msg = ""
