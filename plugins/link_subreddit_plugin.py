@@ -21,9 +21,9 @@ from telethon.tl.types import MessageEntityTextUrl, MessageEntityUrl
 async def link_subreddit(event):
     reply_msg = ""
     for s in event.pattern_match:
-        subreddit = "".join(s)
-        subreddit_link = urljoin("https://reddit.com/", subreddit)
-        reply_msg += f"• [/{subreddit}]({subreddit_link})\n"
+        subreddit = ("".join(s))[2:]
+        subreddit_link = urljoin("https://reddit.com/r/", subreddit)
+        reply_msg += f"• [/r/{subreddit}]({subreddit_link})\n"
         if len(event.pattern_match) < 2:
             reply_msg = reply_msg[2:]
     link_bool = ".np" not in event.raw_text and len(event.pattern_match) < 2
