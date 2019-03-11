@@ -50,7 +50,6 @@ async def random_slap(event, slapper, slapee):
         f"{slapee} was cyberbullied by {slapper}.",
         # Memes:
         f"{slapee} was rickrolled.",
-        f"{slapee} triggered a feminazi.",
         f"{slapee} is fresh out of lives.",
         f"{slapee} shot John Wick's dog.",
         f"{slapee} was introduced to actual cannibal Shia Labeouf by {slapper}.",
