@@ -40,7 +40,7 @@ async def currency(event):
     fromcur = event.pattern_match.group(2).upper()
     tocur = event.pattern_match.group(3).upper()
 
-    if fromcur or tocur in stop_words:
+    if fromcur.lower() in stop_words or tocur.lower() in stop_words:
         return
 
     try:
@@ -50,7 +50,7 @@ async def currency(event):
     except ValueError:
         await log(event, "CURRENCY NOT AVAILABLE")
         await event.reply(
-            f"**Sorry, that currency is not supported yet.**\nFor a list of supported currencies [click here]({link}) or send /currencies.",
+            f"**Sorry, that currency is not supported yet.**\nFor a list of supported currencies [click here]({link}) or send /currencies",
             link_preview=False
         )
 
