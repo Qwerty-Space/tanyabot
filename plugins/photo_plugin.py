@@ -31,8 +31,8 @@ async def on_photo(event):
         return
     if "image" not in mime_type:
         return
-    if image.size > 10000000:
-        await event.reply("Image too large!  It must be under 10 MB.")
+    if image.size > 15000000:
+        await event.reply("Image too large!  It must be under 15 MB.")
         await log(event, "Image too large!")
         return
     await event.client(functions.messages.SetTypingRequest(
