@@ -1,8 +1,8 @@
 r"""When a user mentions Hitler, or the Führer, the bot will respond with one of three messages.
 
-Limits to once a minute.
+Limited to once a minute.
 
-pattern:  `(?i)\b(hitler|führer|fuhrer)\b` __(global)__
+pattern:  `(?i)\b(hitler|f[uü]hrer)\b"` __(global)__
 """
 
 import re
@@ -12,7 +12,7 @@ from .global_functions import log, cooldown
 
 
 # MEIN FÜHRER!
-@events.register(events.NewMessage(pattern=re.compile(r"(?i)\b(hitler|führer|fuhrer)\b").search, outgoing=False))
+@events.register(events.NewMessage(pattern=re.compile(r"(?i)\b(hitler|f[uü]hrer)\b").search, outgoing=False))
 @cooldown(60)
 async def mein_fuhrer(event):
     response_id = randint(0,3) # Roll for the response
