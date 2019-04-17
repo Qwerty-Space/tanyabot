@@ -1,4 +1,4 @@
-r"""When a user mentions Hitler, or the Führer, the bot will respond with one of three messages.
+r"""When a user mentions Hitler, or the Führer, the bot will respond with one of a few messages.
 
 Limited to once a minute.
 
