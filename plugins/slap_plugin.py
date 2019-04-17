@@ -1,7 +1,7 @@
 """Slaps a user the sender replies to, or if there's no reply the sender gets slapped.
 10 second cooldown.
 
-pattern: `pattern=r"/slap$"`
+pattern: `pattern=r"/(?:slap|kicc)(@\S+)?$`
 """
 from random import choice
 from telethon import events
@@ -61,7 +61,7 @@ async def random_slap(event, slapper, slapee):
     return choice(slap_list)
 
 
-@events.register(events.NewMessage(pattern=r"/slap(@\w+)?$"))
+@events.register(events.NewMessage(pattern=r"/(?:slap|kicc)(@\S+)?$"))
 @cooldown(10)
 async def slap(event):
     usr_group = event.pattern_match.group(1)
