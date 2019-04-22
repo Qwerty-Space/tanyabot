@@ -27,10 +27,8 @@ def cooldown(timeout):
         last_called = defaultdict(int)
 
         async def wrapped(event, *args, **kwargs):
-            print(event.chat_id, event.chat.id)
             current_time = time.time()
             if current_time - last_called[event.chat_id] < timeout:
-                print(last_called)
                 time_left = round(timeout - (current_time - last_called[event.chat_id]), 1)
                 await log(event, f"Cooldown: {time_left}s")
                 return
