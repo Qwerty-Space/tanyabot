@@ -16,7 +16,7 @@ from .global_functions import log, cooldown
 @cooldown(60)
 async def mein_fuhrer(event):
     response_id = randint(0,1) # Roll for the response
-    elif response_id == 0:
+    if response_id == 0:
         await event.reply(file="CAADAgADWgADraG3CP76-OQcP7msAg")
     elif response_id == 1:
         await event.reply(file="CAADBAADkQYAAhgwqgVYHov8PqiL9gI")
