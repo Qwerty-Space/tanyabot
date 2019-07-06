@@ -28,7 +28,10 @@ stop_words = ["rip", "wut",
               "bed", "bad",
               "rad", "mad",
               "had", "lad",
-              "its", "the"]
+              "its", "the",
+              "pls", "plz",
+              "blz", "bls",
+              "fix", "pix"]
 
 
 # Convert Currency
