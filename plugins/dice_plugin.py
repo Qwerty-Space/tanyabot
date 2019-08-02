@@ -1,14 +1,15 @@
-"""Start message
+"""Dice roll
 
-pattern: `/start$`
+Will roll a __x__ sided dice __n__ times.  
+Example:  `/roll 3d20`
+
+pattern: `/roll (?:(\d+)d|d)?(\d+)$`
 """
 from random import randint
 from telethon import client, events
 from .global_functions import log
 
 
-# /start
-# @events.register(events.NewMessage(pattern=r"/roll(@\w+)? (\d+)$"))
 @events.register(events.NewMessage(pattern=r"/roll(@\w+)? (?:(\d+)d|d)?(\d+)$"))
 async def on_roll(event):
     usr_group = event.pattern_match.group(1)
