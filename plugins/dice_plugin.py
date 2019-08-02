@@ -43,4 +43,4 @@ async def on_roll(event):
     output = " ".join(val)
 
     await log(event)    # Logs the event
-    await event.respond(f"**{command}:**\n`{output}`\n**=**`{total}`")
+    await event.respond(f"**{command}:**\n`{output}`\n**=** `{total}`")
