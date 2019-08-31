@@ -2,9 +2,9 @@
 
 A plugin based, silly [qbot] for Telegram, somewhat inspired by [otouto], and [uniborg].  
 
-[otouto]: https://github.com/topkecleon/otouto/
-[uniborg]: https://github.com/uniborg/uniborg
 [qbot]: https://github.com/Qwerty-Space/qbot
+[otouto]: https://github.com/topkecleon/otouto/
+[uniborg]: https://github.com/udf/uniborg
 
 ## Disclaimer
 All references to Hitler are jokes between some friends and I.  Not to be taken seriously as we have no relation, or involvement in any fascist, racist, homophobic or trans-phobic, or nazi activity, and are strongly against it.  Any jokes used in this bot that you might find offensive are not intended as such.
