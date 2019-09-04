@@ -1,5 +1,5 @@
 """Dice roll
-
+8
 Will roll a __x__ sided dice __n__ times.  
 Example:  `/roll 3d20`
 
@@ -11,38 +11,35 @@ from .global_functions import log
 import re
 
 
-@events.register(events.NewMessage(pattern=r"(?<=\/roll ).*(?:(?<= )(?:(\d+)d|d)?(\d+)){1,10}"))
+@events.register(events.NewMessage(pattern=r"\/roll(?:@\w+)? .*(?:(\d+)d|d)?(\d+)"))
 async def on_roll(event):
     usr_group = event.pattern_match.group(1)
     username = (await event.client.get_me()).username
     if usr_group and username not in usr_group:
         return
 
-    m = event.pattern_match
+    await log(event, info="Roll Check")
+
+    m = event.pattern_match[0]
     
-    rollPattern = r"(?:(\d+)d|d)?(\d+){1,10}"
+    rollPattern = r"(?:(\d+)d|d)?(\d+)"
     
     matches = re.finditer(rollPattern, m)
-    
-    if not any(matches)
-        await log(event, info="Bad format")
-        return
     
     commands = list()
     outputs = list()
     total = int()
     
     for matchNum, match in enumerate(matches, start=1):
-            
-        if not match.group(2):
+        
+        if match.group(1) is None:
             rolls = 1
         else:
             rolls = int(match.group(1))
 
         sides = int(match.group(2))
-
-        if rolls > 500 or sides > 100000:
-            await event.respond("The maximum rolls is 500, and the maximum amount of sides is 100,000.")
+        if rolls > 50 or sides > 100000:
+            await event.respond("The maximum rolls is 50, and the maximum amount of sides is 100,000.")
             await log(event, info="Bad roll")
             return
 
@@ -54,9 +51,9 @@ async def on_roll(event):
             val.append(str(r))
             total += r
 
-        ouputs.append(" ".join(val))
+        outputs.append(" ".join(val))
             
-    command.join(commands)
+    command = " ".join(commands)
     output = " ".join(outputs)
 
     await log(event)    # Logs the event
