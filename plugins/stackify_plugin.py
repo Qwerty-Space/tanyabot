@@ -4,7 +4,7 @@ Examples:
 • 635 blocks in/as stacks
 • 635 in/as stacks
 
-Add `s161` to the end to change the maximum stack size to 16 for items such as snowballs.
+Add `s16` to the end to change the maximum stack size to 16 for items such as snowballs.
 
 pattern:  `(?i)(\d+){1,9}(?: blocks)?(?: (?:in|as) stacks)?(?: s(16|64))?`
 """
