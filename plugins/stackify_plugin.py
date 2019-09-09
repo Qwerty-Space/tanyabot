@@ -6,7 +6,7 @@ Examples:
 
 Add `s16` to the end to change the maximum stack size to 16 for items such as snowballs.
 
-pattern:  `(?i)(\d+){1,9}(?: blocks|(?: blocks)? (?:in|as) stacks)?(?: s(16|64))?$`
+pattern:  `(?i)(\d+){1,9}(?: blocks?|(?: blocks?)? (?:in|as) stacks)(?: s(16|64))?$`
 """
 
 from telethon import events, sync
@@ -19,7 +19,7 @@ def plural(number):
         return "s"
 
 # Calculate how many stacks
-@events.register(events.NewMessage(pattern=r"(?i)(\d+){1,9}(?: blocks|(?: blocks)? (?:in|as) stacks)?(?: s(16|64))?$", forwards=False))
+@events.register(events.NewMessage(pattern=r"(?i)(\d+){1,9}(?: blocks|(?: blocks)? (?:in|as) stacks)(?: s(16|64))?$", forwards=False))
 async def stackify(event):
     """First calcuate how many full stacks, then the remainder."""
 
