@@ -31,7 +31,11 @@ stop_words = ["rip", "wut",
               "its", "the",
               "pls", "plz",
               "blz", "bls",
-              "fix", "pix"]
+              "fix", "pix",
+              "sex", "guy",
+              "gal", "man",
+              "bob", "boy",
+              "bop", "pop"]
 
 
 # Convert Currency
