@@ -20,46 +20,26 @@ c = CurrencyConverter()
 link = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
 
 
-stop_words = ["rip", "wut",
-              "wot", "wat",
-              "wet", "hec",
-              "fak", "fuc",
-              "fuk", "pep",
-              "bed", "bad",
-              "rad", "mad",
-              "had", "lad",
-              "its", "the",
-              "pls", "plz",
-              "blz", "bls",
-              "fix", "pix",
-              "sex", "guy",
-              "gal", "man",
-              "bob", "boy",
-              "bop", "pop"]
-
-
 # Convert Currency
 @events.register(events.NewMessage(pattern=r"(?i)^(\d{1,9}|\d{1,9}\.\d\d?)? ?([a-z]{3}) (?:to|in) ([a-z]{3})$"))
 async def currency(event):
     fromval = event.pattern_match.group(1)
+
     if not fromval:
         fromval = 1
+        
     fromcur = event.pattern_match.group(2).upper()
     tocur = event.pattern_match.group(3).upper()
 
-    if fromcur.lower() in stop_words or tocur.lower() in stop_words:
+    if fromcur.upper() not in c.currencies:
+        return
+    if tocur.upper() not in c.currencies:
         return
 
-    try:
-        result = round(c.convert(fromval, fromcur, tocur), 2)
-        await log(event, result)
-        await event.reply(f"**{fromval} {fromcur} is:**  `{result} {tocur}`")
-    except ValueError:
-        await log(event, "CURRENCY NOT AVAILABLE")
-        await event.reply(
-            f"**Sorry, that currency is not supported yet.**\nFor a list of supported currencies [click here]({link}) or send /currencies",
-            link_preview=False
-        )
+    result = round(c.convert(fromval, fromcur, tocur), 2)
+    await log(event, result)
+    await event.reply(f"**{fromval} {fromcur} is:**  `{result} {tocur}`")
+
 
 @events.register(events.NewMessage(pattern=r"/currencies(@\w+)?$"))
 @cooldown(60)
