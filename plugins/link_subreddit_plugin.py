@@ -8,6 +8,7 @@ pattern:  `(?i)(?:[^/\w]|^|\s)/?(r/\w+)(/(?:top|best|new|hot|rising|gilded|contr
 """
 
 import re
+import requests
 from urllib.parse import urljoin
 from telethon import events, sync
 from .global_functions import log
@@ -23,6 +24,11 @@ async def link_subreddit(event):
     for s in event.pattern_match:
         subreddit = ("".join(s))[2:]
         subreddit_link = urljoin("https://reddit.com/r/", subreddit)
+
+        res = requests.get(subreddit_link)
+        if res.status_code == 404: # don't respond if the subreddit doesn't exist
+            return
+
         reply_msg += f"• [/r/{subreddit}]({subreddit_link})\n"
         if len(event.pattern_match) < 2:
             reply_msg = reply_msg[2:]

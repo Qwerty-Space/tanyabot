@@ -1,3 +1,4 @@
 Telethon
 CurrencyConverter
 Pillow
+requests
