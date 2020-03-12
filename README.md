@@ -12,7 +12,7 @@ All references to Hitler are jokes between some friends and I.  Not to be taken 
 ## Requirements
 - [Telethon] 1.3
 - \>= Python 3.5 (Tested on 3.6.6 and 3.7.0)
-- [CurrencyConverter]
+- Other [requirements](requirements.txt)
 - A brain probably
 
 [Telethon]: https://github.com/LonamiWebs/Telethon
