@@ -22,6 +22,11 @@ ytdl_opts = {
 
 async def download(event, match):
     vids = []
+    if event.is_private:
+        chat = event.from_id
+    else:
+        chat = event.to_id
+
     check = await event.reply(f"Checking")
     for m in match:
         await check.edit(f"Checking {match.index(m)+1}/{len(match)}")
@@ -66,7 +71,8 @@ async def download(event, match):
             # await event.client.send_file(event.from_id, final_file,
             #                             caption=v, reply_to=event.message,
             #                             supports_streaming=True, thumb=thumb)
-            await event.reply(v, file=final_file)
+            async with event.client.action(chat, "video"):
+                await event.reply(v, file=final_file)
         except:
             pass
 
@@ -87,5 +93,5 @@ async def on_start_vid(event):
                                     r"(?i)(?:^|\s)((?:https?\://)?v\.redd\.it/\w+)").findall
                                     ))
 async def vreddit(event):
-    await download(event, event.pattern_match)
+        await download(event, event.pattern_match)
 
