@@ -13,9 +13,6 @@ import re
 from telethon import events
 from .global_functions import log
 
-import pprint
-pp = pprint.PrettyPrinter(indent=2)
-
 ytdl_opts = {
     "format": "best/bestvideo+bestaudio",
     "quiet": "true"
