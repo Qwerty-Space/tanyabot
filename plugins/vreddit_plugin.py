@@ -13,17 +13,14 @@ import re
 from telethon import events
 from .global_functions import log
 
+
 ytdl_opts = {
     "format": "best/bestvideo+bestaudio",
     "quiet": "true"
 }
 
 
-@events.register(events.NewMessage(pattern=re.compile(
-                                    r"(?i)(?:^|\s)((?:https?\://)?v\.redd\.it/\w+)").findall
-                                    ))
-async def vreddit(event):
-    match = event.pattern_match
+async def download(event, match):
     vids = []
     check = await event.reply(f"Checking")
     for m in match:
@@ -32,8 +29,14 @@ async def vreddit(event):
         post_json = requests.get(url + ".json", headers={'User-Agent': f"{randint(10000,99999)}"}).json()
         over_18 = post_json[0]['data']['children'][0]['data']['over_18']
 
-        if not over_18:
+        if over_18 and event.is_private or not over_18:
             vids.append(m)
+        elif over_18 and not event.is_private:
+            me = (await event.client.get_me()).username
+            sub = re.sub(r"(?:https?\://)?v\.redd\.it/", "", m)
+
+            link = f"t.me/{me}?start=vreddit_{sub}"
+            await event.reply(f"[NSFW: click to view]({link})")
 
     await check.delete()
     await log(event)
@@ -49,25 +52,40 @@ async def vreddit(event):
 
             file_name = f"{f['title']}{now}.mp4"
             final_file = "o_" + file_name
-            thumb = final_file + ".jpg"
+            # thumb = final_file + ".jpg"
 
             ff = FFmpeg(
                 inputs={file_name: None},
                 outputs={
                     final_file: "-c:v libx264 -pix_fmt yuv420p -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2'",
-                    thumb: "-ss 00:00:01.000 -vframes 1"
+                    # thumb: "-ss 00:00:01.000 -vframes 1"
                 }
             )
             ff.run(stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 
-            await event.client.send_file(event.from_id, final_file,
-                                        caption=v, reply_to=event.message,
-                                        supports_streaming=True, thumb=thumb)
+            # await event.client.send_file(event.from_id, final_file,
+            #                             caption=v, reply_to=event.message,
+            #                             supports_streaming=True, thumb=thumb)
+            await event.reply(v, file=final_file)
         except:
             pass
 
         await dl_msg.delete()
         os.remove(file_name)
-        os.remove(thumb)
+        # os.remove(thumb)
         os.remove(final_file)
+
+
+
+@events.register(events.NewMessage(pattern=r"/start vreddit_(\w+)$"))
+async def on_start_vid(event):
+    link = ["https://v.redd.it/" + event.pattern_match.group(1)]
+    await download(event, link)
+
+
+@events.register(events.NewMessage(pattern=re.compile(
+                                    r"(?i)(?:^|\s)((?:https?\://)?v\.redd\.it/\w+)").findall
+                                    ))
+async def vreddit(event):
+    await download(event, event.pattern_match)
 
