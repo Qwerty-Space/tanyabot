@@ -1,4 +1,4 @@
 #!/bin/bash
 # Start tanyabot
 
-screen -dmS tanyabot python3 bot.py
+tmux new -s tanyabot python3 bot.py
