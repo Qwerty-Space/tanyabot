@@ -1,4 +1,0 @@
-INFO:telethon.network.mtprotosender:Connecting to 149.154.167.92:443/TcpFull...
-INFO:telethon.network.mtprotosender:Connection to 149.154.167.92:443/TcpFull complete!
-INFO:root:[Sun Mar 22 00:15:01 2020]:
-    [151462131]@[151462131] Bob@BobTheBanana: help
