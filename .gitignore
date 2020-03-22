@@ -8,6 +8,7 @@ __pycache__/
 *.session-journal
 
 # qbot
+log.txt
 config.ini
 *.mp4
 *.part
