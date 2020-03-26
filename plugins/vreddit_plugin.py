@@ -20,7 +20,7 @@ ytdl_opts = {
 }
 
 
-async def download(event, match):
+async def vreddit(event, match):
     vids = []
     if event.is_private:
         chat = event.from_id
@@ -62,7 +62,7 @@ async def download(event, match):
             ff = FFmpeg(
                 inputs={file_name: None},
                 outputs={
-                    final_file: "-c:v libx264 -pix_fmt yuv420p -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2'",
+                    final_file: "-c:v libx264 -pix_fmt yuv420p -b:v 3M -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2'",
                     # thumb: "-ss 00:00:01.000 -vframes 1"
                 }
             )
@@ -92,6 +92,6 @@ async def on_start_vid(event):
 @events.register(events.NewMessage(pattern=re.compile(
                                     r"(?i)(?:^|\s)((?:https?\://)?v\.redd\.it/\w+)").findall
                                     ))
-async def vreddit(event):
+async def on_vreddit(event):
         await download(event, event.pattern_match)
 
