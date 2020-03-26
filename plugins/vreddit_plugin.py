@@ -86,12 +86,12 @@ async def vreddit(event, match):
 @events.register(events.NewMessage(pattern=r"/start vreddit_(\w+)$"))
 async def on_start_vid(event):
     link = ["https://v.redd.it/" + event.pattern_match.group(1)]
-    await download(event, link)
+    await vreddit(event, link)
 
 
 @events.register(events.NewMessage(pattern=re.compile(
                                     r"(?i)(?:^|\s)((?:https?\://)?v\.redd\.it/\w+)").findall
                                     ))
 async def on_vreddit(event):
-        await download(event, event.pattern_match)
+        await vreddit(event, event.pattern_match)
 
