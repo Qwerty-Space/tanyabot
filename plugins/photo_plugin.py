@@ -3,23 +3,9 @@ It will only respond to image files under 15 MB (15000000 bytes).
 """
 
 import os
-from PIL import Image
 from io import BytesIO
-from .global_functions import log
+from .global_functions import log, downscale
 from telethon import events, errors, functions, types
-
-
-
-async def downscale(item):
-    im = Image.open(item)
-    resolution = im.size
-    size = 1280, 1280 # Rezise to a maxium of.  (Telegram's limit)
-    outfile = BytesIO()
-
-    im.thumbnail(size, Image.LANCZOS)
-    im.save(outfile, "PNG")
-
-    return outfile, resolution
 
 
 @events.register(events.NewMessage(outgoing=False))

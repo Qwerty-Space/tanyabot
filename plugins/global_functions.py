@@ -1,9 +1,11 @@
-from collections import defaultdict
-from random import random
+import time
+import asyncio
 import inspect
 import logging
-import asyncio
-import time
+from PIL import Image
+from io import BytesIO
+from random import random
+from collections import defaultdict
 
 
 # Probability
@@ -36,3 +38,14 @@ def cooldown(timeout):
             return await function(event, *args, **kwargs)
         return wrapped
     return wrapper
+
+async def downscale(item, x=1280, y=1280, format="PNG"):
+    im = Image.open(item)
+    resolution = im.size
+    size = x, y # Rezise to a maxium of.  (Telegram's limit)
+    outfile = BytesIO()
+
+    im.thumbnail(size, Image.LANCZOS)
+    im.save(outfile, format)
+
+    return outfile, resolution

@@ -2,16 +2,17 @@
 """
 
 import os
+import string
 import requests
 import subprocess
 import youtube_dl
-from ffmpy import FFmpeg
 from time import time
-from random import randint
+from ffmpy import FFmpeg
+from random import randint, choice
 
 import re
 from telethon import events
-from .global_functions import log
+from .global_functions import log, downscale
 
 
 ytdl_opts = {
@@ -19,19 +20,19 @@ ytdl_opts = {
     "quiet": "true"
 }
 
+async def generator(size=randint(8,16)):
+    chars = string.ascii_letters + string.digits
+    return "".join(choice(chars) for _ in range(size))
+
 
 async def vreddit(event, match):
     vids = []
-    if event.is_private:
-        chat = event.from_id
-    else:
-        chat = event.to_id
 
     check = await event.reply(f"Checking")
     for m in match:
         await check.edit(f"Checking {match.index(m)+1}/{len(match)}")
         url = requests.get(m).url
-        post_json = requests.get(url + ".json", headers={'User-Agent': f"{randint(10000,99999)}"}).json()
+        post_json = requests.get(url + ".json", headers={'User-Agent': f"{await generator()}"}).json()
         over_18 = post_json[0]['data']['children'][0]['data']['over_18']
 
         if over_18 and event.is_private or not over_18:
@@ -56,30 +57,32 @@ async def vreddit(event, match):
                 f = ytdl.extract_info(v)
 
             file_name = f"{f['title']}{now}.mp4"
-            final_file = "o_" + file_name
-            # thumb = final_file + ".jpg"
+            outfile = "o_" + file_name
+            thumbbig = outfile + ".jpg"
 
             ff = FFmpeg(
                 inputs={file_name: None},
                 outputs={
-                    final_file: "-c:v libx264 -pix_fmt yuv420p -b:v 3M -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2'",
-                    # thumb: "-ss 00:00:01.000 -vframes 1"
+                    outfile: "-c:v libx264 -pix_fmt yuv420p -b:v 3M -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2'",
+                    thumbbig: "-ss 00:00:01.000 -vframes 1"
                 }
             )
             ff.run(stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+            # ff.run()
+            thumb, res = await downscale(thumbbig, 200, 200, "JPEG")
+            thumb.seek(0)
 
-            # await event.client.send_file(event.from_id, final_file,
-            #                             caption=v, reply_to=event.message,
-            #                             supports_streaming=True, thumb=thumb)
-            async with event.client.action(chat, "video"):
-                await event.reply(v, file=final_file)
+            async with event.client.action(event.chat, "video"):
+                # TODO:
+                ## Get thhumbnails working - i have no idea how
+                await event.client.send_file(event.chat_id, file=outfile, caption=v, reply_to=event.id, thumb=thumb, supports_streaming=True)
         except:
             pass
 
         await dl_msg.delete()
         os.remove(file_name)
-        # os.remove(thumb)
-        os.remove(final_file)
+        os.remove(outfile)
+        os.remove(thumbbig)
 
 
 
