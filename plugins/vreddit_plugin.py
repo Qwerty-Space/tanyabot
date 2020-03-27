@@ -69,10 +69,11 @@ async def vreddit(event, match):
             )
             ff.run(stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
             # ff.run()
-            thumb, res = await downscale(thumbbig, 200, 200, "JPEG")
+            thumb, res = await downscale(thumbbig, 100, 100, format="JPEG")
             thumb.seek(0)
 
             async with event.client.action(event.chat, "video"):
+                thumb.name = "image.jpg"
                 # TODO:
                 ## Get thhumbnails working - i have no idea how
                 await event.client.send_file(event.chat_id, file=outfile, caption=v, reply_to=event.id, thumb=thumb, supports_streaming=True)
