@@ -38,9 +38,8 @@ async def on_roll(event):
             break
 
         ## set the amount of rolls to 1 if n in nd6 is not specified
-        if not d.group(1):
-            rolls = 1
-        else:
+        rolls = 1
+        if d.group(1):
             rolls = int(d.group(1))
 
         sides = int(d.group(2)) # how many "sides" the dice has
