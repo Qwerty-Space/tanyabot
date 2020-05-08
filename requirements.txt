@@ -2,3 +2,4 @@ Telethon
 CurrencyConverter
 Pillow
 requests
+youtube-dl
