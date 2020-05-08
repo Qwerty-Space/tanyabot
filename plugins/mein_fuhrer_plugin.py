@@ -15,9 +15,11 @@ from .global_functions import log, cooldown
 @events.register(events.NewMessage(pattern=re.compile(r"(?i)\b(hitler|f[uü]hrer)\b").search, outgoing=False))
 @cooldown(60)
 async def mein_fuhrer(event):
-    response_id = randint(0,1) # Roll for the response
+    response_id = randint(0,2) # Roll for the response
     if response_id == 0:
         await event.reply(file="CAADAgADWgADraG3CP76-OQcP7msAg")
     elif response_id == 1:
         await event.reply(file="CAADBAADkQYAAhgwqgVYHov8PqiL9gI")
+    elif response_id == 2:
+        await event.reply(file="CAADAgADRQADqh-tD2oBxZyI7uVhAg")
     await log(event, response_id)
