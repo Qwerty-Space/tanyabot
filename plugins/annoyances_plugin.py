@@ -9,7 +9,6 @@ chats = {-1001146038279, # BB
 # Banned content:
 banned_bots = {306376942} # @nnbbot
 banned_media = {"BAADAQADiwAD0r04RivkiZtrntB0Ag", # Stupid GIF Sky always sends 
-                "BAADAgADLwUAAvNtEEjKi3Bn84YOSAI", # Other stupid GIF Sky always sends
                }
 
 # Check for admins
