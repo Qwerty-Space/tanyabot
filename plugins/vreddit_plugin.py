@@ -42,7 +42,7 @@ async def vreddit(event, match):
             sub = re.sub(r"(?:https?\://)?v\.redd\.it/", "", m)
 
             link = f"t.me/{me}?start=vreddit_{sub}"
-            await event.reply(f"[NSFW: click to view]({link})")
+            await event.reply(f"[NSFW: click to view]({link})", link_preview=False)
 
     await check.delete()
     await log(event)
@@ -75,7 +75,7 @@ async def vreddit(event, match):
             async with event.client.action(event.chat, "video"):
                 thumb.name = "image.jpg"
                 # TODO:
-                ## Get thhumbnails working - i have no idea how
+                ## Get thumbnails working - i have no idea how
                 await event.client.send_file(event.chat_id, file=outfile, caption=v, reply_to=event.id, thumb=thumb, supports_streaming=True)
         except:
             pass
@@ -97,5 +97,11 @@ async def on_start_vid(event):
                                     r"(?i)(?:^|\s)((?:https?\://)?v\.redd\.it/\w+)").findall
                                     ))
 async def on_vreddit(event):
+    # Check if the message is forwarded from self
+    fwd = event.forward
+
+    if fwd and (await fwd.get_sender()).is_self:
+        return
+    else:
         await vreddit(event, event.pattern_match)
 
