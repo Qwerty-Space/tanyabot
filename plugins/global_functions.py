@@ -23,7 +23,7 @@ async def log(event, info=""):
     [{sender.id}]@[{event.chat_id}] {sender.first_name}@{sender.username}: {command}
     {info}""".rstrip())
 
-# Cooldown
+# Cooldown in seconds
 def cooldown(timeout):
     def wrapper(function):
         last_called = defaultdict(int)
