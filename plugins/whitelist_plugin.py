@@ -5,7 +5,7 @@ Only stay in groups in the whitelist
 
 
 from asyncio import sleep
-from telethon import client, events
+from telethon import client, events, errors
 from .global_functions import log, cooldown
 
 
@@ -30,8 +30,11 @@ async def check(event):
     await event.client.kick_participant(event.chat, "me")
 
     await sleep(5)
-    await event.client.delete_messages(
-        event.chat, res
-    )
+    try:
+        await event.client.delete_messages(
+            event.chat, res
+        )
+    except errors.ChannelPrivateError:
+        pass
 
     await log(event)    # Logs the event
