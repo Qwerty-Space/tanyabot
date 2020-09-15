@@ -24,9 +24,9 @@ units = {
 }
 
 
-@events.register(events.NewMessage(pattern=r"(?i)^(\d+(?:(?:\.|,)\d+)?)? ?(k?g|ton(?:ne)|lbs|oz|st(?:one)) (?:to|in) (k?g|ton(?:ne)|lbs|oz|st(?:one))$"))
+@events.register(events.NewMessage(pattern=r"(?i)^(\d+(?:(?:\.|,)\d+)?)? ?(k?g|ton(?:ne)|lbs|oz|st(?:one)?) (?:to|in) (k?g|ton(?:ne)|lbs|oz|st(?:one)?)$"))
 async def weight(event):
-    value = float(event.pattern_match.group(1))
+    value = event.pattern_match.group(1)
 
     if not value:
         value = 1
@@ -34,7 +34,7 @@ async def weight(event):
     unitfrom = event.pattern_match.group(2).lower()
     unitto = event.pattern_match.group(3).lower()
 
-    result = round(value*units[unitfrom]/units[unitto], 3)
+    result = round(float(value)*units[unitfrom]/units[unitto], 3)
     await log(event, result)
     await event.reply(f"**{value} {unitfrom} is:**  `{result} {unitto}`")
 
