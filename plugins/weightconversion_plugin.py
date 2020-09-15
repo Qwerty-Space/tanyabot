@@ -1,5 +1,4 @@
 # Convert weights to other common weights, the numbers are the given weight in grams
-# regex: ^(\d+\.\d+) (g|kg|tonne|lbs|oz|st|ton) to (g|kg|tonne|lbs|oz|st|ton)
 
 from telethon import events, sync
 from .global_functions import log, cooldown
