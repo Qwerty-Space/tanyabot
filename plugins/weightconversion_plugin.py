@@ -1,4 +1,12 @@
-# Convert weights to other common weights, the numbers are the given weight in grams
+r"""Convert weights to other common weights. 
+Plugin gets triggered by a standalone message in the form of `{number} {weight1} in/to {weight2}`
+
+Use /weights to list accepted weight units.
+
+patterns: 
+`(?i)^(\d+(?:(?:\.|,)\d+)?)? ?(k?g|ton(?:ne)|lbs|oz|st(?:one)) (?:to|in) (k?g|ton(?:ne)|lbs|oz|st(?:one))$`
+`/weights`
+"""
 
 from telethon import events, sync
 from .global_functions import log, cooldown
