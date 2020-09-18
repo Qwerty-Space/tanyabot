@@ -23,16 +23,24 @@ units = {
     "ton": 1016046.9088
 }
 
+async def is_plural(unit):
+    if "ton" not in unit or not unit.endswith("s"):
+        return unit
 
-@events.register(events.NewMessage(pattern=r"(?i)^(\d+(?:(?:\.|,)\d+)?)? ?(k?g|ton(?:ne)|lbs|oz|st(?:one)?) (?:to|in) (k?g|ton(?:ne)|lbs|oz|st(?:one)?)$"))
+    return unit[:-1]
+
+@events.register(events.NewMessage(
+    pattern=r"(?i)^(\d+(?:(?:\.|,)\d+)?)? ?(k?g|ton(?:ne)?s?|lbs|oz|st(?:one)?) (?:to|in) (k?g|ton(?:ne)?s?|lbs|oz|st(?:one)?)$"
+))
 async def weight(event):
-    value = event.pattern_match.group(1)
+    m = event.pattern_match
+    value = m.group(1)
 
     if not value:
         value = 1
         
-    unitfrom = event.pattern_match.group(2).lower()
-    unitto = event.pattern_match.group(3).lower()
+    unitfrom = await is_plural(m.group(2).lower())
+    unitto = await is_plural(m.group(3).lower())
 
     result = round(float(value)*units[unitfrom]/units[unitto], 3)
     await log(event, result)
