@@ -4,7 +4,7 @@ Plugin gets triggered by a standalone message in the form of `{number} {weight1}
 Use /weights to list accepted weight units.
 
 patterns: 
-`(?i)^(\d+(?:(?:\.|,)\d+)?)? ?(k?g|ton(?:ne)|lbs|oz|st(?:one)?) (?:to|in) (k?g|ton(?:ne)|lbs|oz|st(?:one)?)$`
+`(?i)^(\d+(?:(?:\.|,)\d+)?)? ?(k?g|ton(?:ne)?s?|lbs|oz|st(?:one)?) (?:to|in) (k?g|ton(?:ne)?s?|lbs|oz|st(?:one)?)$`
 `/weights`
 """
 
