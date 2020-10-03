@@ -39,7 +39,7 @@ async def send_ass(event):
     await log(event, "Generating")
     start_time = round(time.time(), 2)
     msg = event.message
-    file_name = f"ass_{msg.from_id}_{start_time}.png"
+    file_name = f"ass_{msg.sender_id}_{start_time}.png"
     w = 512
     h = 512
     x_origin = randint(0, w)

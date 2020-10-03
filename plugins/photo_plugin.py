@@ -27,7 +27,7 @@ async def on_photo(event):
 
     await log(event)
 
-    async with event.client.action(event.from_id, "photo"):
+    async with event.client.action(event.sender_id, "photo"):
         f = await event.download_media(file=BytesIO())
         f.seek(0)
         im, resolution = await downscale(f)

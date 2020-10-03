@@ -25,7 +25,7 @@ async def check_admin(event):
 async def media_annoyances(event):
     if not admins:
         await check_admin(event)
-    if event.from_id in admins:
+    if event.sender_id in admins:
         return
 
     if event.file.id not in banned_media:
@@ -41,7 +41,7 @@ async def media_annoyances(event):
 async def bot_annoyances(event):
     if not admins:
         await check_admin(event)
-    if event.from_id in admins:
+    if event.sender_id in admins:
         return
 
     if event.via_bot_id not in banned_bots:
