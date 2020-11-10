@@ -21,7 +21,6 @@ async def random_slap(event, slapper, slapee):
         f"{slapee} was blown up by {slapper}.",
         f"{slapee} fell from a high place.",
         f"{slapee} was doomed to fall by {slapper}.",
-        f"{slapee} fell too far and was finished by {slapper}.",
         f"{slapee} was squashed by a falling anvil.",
         f"{slapee} was squashed by a falling anvil whilst fighting {slapper}.",
         f"{slapee} went up in flames.",
@@ -48,15 +47,24 @@ async def random_slap(event, slapper, slapee):
         f"{slapee} was infected with malware from an email {slapper} sent them.",
         f"{slapee} blue screened.",
         f"{slapee} was cyberbullied by {slapper}.",
+        f"{slapper} convinced {slapee} to enter `rm -rf /*`.",
+        f"{slapper} convinced {slapee} to detelte System32."
         # Memes:
         f"{slapee} was rickrolled.",
         f"{slapee} is fresh out of lives.",
         f"{slapee} shot John Wick's dog.",
         f"{slapee} was introduced to actual cannibal Shia Labeouf by {slapper}.",
         f"{slapper} built a wall and made {slapee} pay for it.",
+        f"{slapper} turned {slapee} into emergency food.",
+        f"{slapper}:  __*slaps*__\n{slapee}: HOW CAN (S)HE SLAP?!"
+        f"{slapee}: Et tu, {slapper}?"
         # Animemes:
         f"{slapper}:  Omae wa mou shindeiru.\n{slapee}:  NANI?!",
         f"{slapee} was destroyed by {slapper}'s stand.",
+        # Misc
+        f"{slapee} walked off a ledge.",
+        f"{slapper} sent {slapee} to swim with the fishes.",
+        f"{slapee} forgot to breathe at the sight of {slapper}.",
     ]
     return choice(slap_list)
 
