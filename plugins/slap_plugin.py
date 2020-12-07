@@ -48,7 +48,7 @@ async def random_slap(event, slapper, slapee):
         f"{slapee} blue screened.",
         f"{slapee} was cyberbullied by {slapper}.",
         f"{slapper} convinced {slapee} to enter `rm -rf /*`.",
-        f"{slapper} convinced {slapee} to detelte System32."
+        f"{slapper} convinced {slapee} to delete System32.",
         # Memes:
         f"{slapee} was rickrolled.",
         f"{slapee} is fresh out of lives.",
