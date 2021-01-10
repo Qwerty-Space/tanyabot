@@ -56,8 +56,8 @@ async def random_slap(event, slapper, slapee):
         f"{slapee} was introduced to actual cannibal Shia Labeouf by {slapper}.",
         f"{slapper} built a wall and made {slapee} pay for it.",
         f"{slapper} turned {slapee} into emergency food.",
-        f"{slapper}:  __*slaps*__\n{slapee}: HOW CAN (S)HE SLAP?!"
-        f"{slapee}: Et tu, {slapper}?"
+        f"{slapper}:  __*slaps*__\n{slapee}: HOW CAN (S)HE SLAP?!",
+        f"{slapee}: Et tu, {slapper}?",
         # Animemes:
         f"{slapper}:  Omae wa mou shindeiru.\n{slapee}:  NANI?!",
         f"{slapee} was destroyed by {slapper}'s stand.",
